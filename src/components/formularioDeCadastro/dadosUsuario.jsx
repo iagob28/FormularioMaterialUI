@@ -1,26 +1,14 @@
 import { TextField, Button } from "@material-ui/core";
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import ValidacoesCadastro from "../../contexts/validacoesDeCadastro";
+import useErros from "../../hooks/useErros";
 
-function DadosUsuario({ aoEnviar, validacoes }) {
+function DadosUsuario({ aoEnviar }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [erros, setErros] = useState({ senha: { valido: true, texto: "" } });
+  const validacoes = useContext(ValidacoesCadastro);
+  const [erros, validarCampos, possoEnviar] = useErros(validacoes);
 
-  function validarCampos(event) {
-    const { name, value } = event.target;
-    const novoEstado = { ...erros };
-    novoEstado[name] = validacoes[name](value);
-    setErros(novoEstado);
-  }
-  function possoEnviar() {
-    for (let campo in erros) {
-      if (!erros[campo].valido) {
-        return false;
-      }
-    }
-    return true;
-  }
   return (
     <form
       onSubmit={(event) => {
@@ -28,7 +16,6 @@ function DadosUsuario({ aoEnviar, validacoes }) {
         if (possoEnviar()) {
           aoEnviar({ email, senha });
         }
-        
       }}
     >
       <TextField

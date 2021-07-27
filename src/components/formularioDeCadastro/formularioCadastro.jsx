@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import DadosEntrega from "../dadosEntrega";
 import DadosPessoais from "./dadosPessoais";
 import DadosUsuario from "./dadosUsuario";
-function FormularioCadastro({ aoEnviar, validacoes }) {
+function FormularioCadastro({ aoEnviar }) {
   const [etapaAtual, setEtapaAtual] = useState(0);
   const [dadosColetados, setDados] = useState({});
   useEffect(() => {
@@ -13,9 +13,9 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
     }
   });
   const formularios = [
-    <DadosUsuario aoEnviar={coletarDados} validacoes={validacoes} />,
-    <DadosPessoais aoEnviar={coletarDados} validacoes={validacoes} />,
-    <DadosEntrega aoEnviar={coletarDados} validacoes={validacoes} />,
+    <DadosUsuario aoEnviar={coletarDados} />,
+    <DadosPessoais aoEnviar={coletarDados} />,
+    <DadosEntrega aoEnviar={coletarDados} />,
     <Typography variant="h5">Obrigado por se cadastrar!</Typography>,
   ];
 
