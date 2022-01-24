@@ -1,4 +1,4 @@
-# First App
+# Forms Study
 This app were developed to study how to create a form with validation.
 In the app you will pass by 4 processes to create an account, each page has a validation to some or all of the inputs.
 
